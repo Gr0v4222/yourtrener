@@ -12,12 +12,15 @@ class LoginFormState {
     private Integer ageError;
     @Nullable
     private Integer weightError;
+    @Nullable
+    private Integer rostError;
     private boolean isDataValid;
 
-    LoginFormState(@Nullable Integer nameError, @Nullable Integer ageError, @Nullable Integer weightError) {
+    LoginFormState(@Nullable Integer nameError, @Nullable Integer ageError, @Nullable Integer weightError, @Nullable Integer rostError) {
         this.nameError = nameError;
         this.ageError = ageError;
         this.weightError = weightError;
+        this.rostError = rostError;
         this.isDataValid = false;
     }
 
@@ -25,6 +28,7 @@ class LoginFormState {
         this.nameError = nameError;
         this.ageError = ageError;
         this.weightError = weightError;
+        this.rostError = rostError;
         this.isDataValid = isDataValid;
     }
 
@@ -41,6 +45,11 @@ class LoginFormState {
     @Nullable
     Integer getWeightError() {
         return weightError;
+    }
+
+    @Nullable
+    Integer getRostError() {
+        return rostError;
     }
 
     boolean isDataValid() {

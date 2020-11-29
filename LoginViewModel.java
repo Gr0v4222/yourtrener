@@ -29,9 +29,9 @@ public class LoginViewModel extends ViewModel {
         return loginResult;
     }
 
-    public void login(String name, String age, String weight) {
+    public void login(String name, String age, String weight, String rost) {
         // can be launched in a separate asynchronous job
-        Result<LoggedInUser> result = loginRepository.login(name, age, weight);
+        Result<LoggedInUser> result = loginRepository.login(name, age, weight, rost);
 
         if (result instanceof Result.Success) {
             LoggedInUser data = ((Result.Success<LoggedInUser>) result).getData();
@@ -41,11 +41,11 @@ public class LoginViewModel extends ViewModel {
         }
     }
 
-    public void loginDataChanged(String name, String age, String weight) {
+    public void loginDataChanged(String name, String age, String weight, String rost) {
         if (!isUserNameValid(name)) {
-            loginFormState.setValue(new LoginFormState(R.string.invalid_name, null, null));
+            loginFormState.setValue(new LoginFormState(R.string.invalid_name, null, null, null));
         } else if (!isAgeValid(age)) {
-            loginFormState.setValue(new LoginFormState(null, R.string.invalid_password, null));
+            loginFormState.setValue(new LoginFormState(null, R.string.invalid_password, null, null));
         } else {
             loginFormState.setValue(new LoginFormState(true));
         }

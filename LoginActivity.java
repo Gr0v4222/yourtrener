@@ -40,6 +40,7 @@ public class LoginActivity extends AppCompatActivity {
         final EditText nameEditText = findViewById(R.id.name);
         final EditText ageEditText = findViewById(R.id.age);
         final EditText weightEditText = findViewById(R.id.weight);
+        final EditText rostEditText = findViewById(R.id.rost);
         final Button loginButton = findViewById(R.id.login);
         final ProgressBar loadingProgressBar = findViewById(R.id.loading);
 
@@ -58,6 +59,10 @@ public class LoginActivity extends AppCompatActivity {
                 }
                 if (loginFormState.getWeightError() != null) {
                     weightEditText.setError(getString(loginFormState.getWeightError()));
+                }
+
+                if (loginFormState.getWeightError() != null) {
+                    rostEditText.setError(getString(loginFormState.getWeightError()));
                 }
             }
         });
@@ -86,7 +91,9 @@ public class LoginActivity extends AppCompatActivity {
                 loadingProgressBar.setVisibility(View.VISIBLE);
                 loginViewModel.login(nameEditText.getText().toString(),
                         ageEditText.getText().toString(),
-                        weightEditText.getText().toString()
+                        weightEditText.getText().toString(),
+                        rostEditText.getText().toString()
+
                 );
             }
         });
