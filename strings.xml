@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">YourTrener</string>
+    <!-- Strings related to login -->
+    <string name="prompt_name">Имя</string>
+    <string name="prompt_age">Возраст</string>
+    <string name="prompt_weight">Вес</string>
+    <string name="prompt_rost">Рост</string>
+    <string name="action_sign_in">Войти</string>
+    <string name="action_sign_in_short">Войти</string>
+    <string name="invalid_name">Not a valid username</string>
+    <string name="invalid_password">Age must be >0  characters</string>
+    <string name="welcome">"Добро пожаловать !"</string>
+    <string name="login_failed">"Login failed"</string>
+</resources>
