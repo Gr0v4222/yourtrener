@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        app:srcCompat="@drawable/background" />
+
+    <LinearLayout
+        android:id="@+id/container9"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ImageButton
+            android:id="@+id/buttonBack5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_stroke_black95_press_white"
+            android:backgroundTint="#00F9F6FA"
+            android:clickable="true"
+            android:paddingHorizontal="20dp"
+            android:tint="#201F1F"
+            android:layout_marginTop="20dp"
+            app:srcCompat="@drawable/abc_vector_test" />
+
+        <TextView
+            android:id="@+id/textHard"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:gravity="center_horizontal"
+            android:text="Усложненный уровень"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
+
+        <LinearLayout
+            android:id="@+id/container10"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
+
+
+            <Button
+                android:id="@+id/morningHard"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:backgroundTint="#FFFFFF"
+                android:drawableLeft="@drawable/morning"
+                android:paddingLeft="30dp"
+                android:paddingBottom="10dp"
+                android:text="Утренняя зарядка"
+                android:textSize="18sp" />
+
+            <Button
+                android:id="@+id/kardioHard"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:backgroundTint="#FFFFFF"
+                android:drawableLeft="@drawable/kardio"
+                android:paddingBottom="10dp"
+                android:paddingLeft="30dp"
+                android:textSize="18sp"
+                android:text="Интенсивная кардио-тренировка" />
+
+            <Button
+                android:id="@+id/circleHard"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:backgroundTint="#FFFFFF"
+                android:drawableLeft="@drawable/cicle_train"
+                android:paddingBottom="10dp"
+                android:paddingLeft="30dp"
+                android:textSize="18sp"
+                android:text="Круговая      силовая-тренировка" />
+
+            <Button
+                android:id="@+id/stretchingHard"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:backgroundTint="#FDFCFC"
+                android:drawableLeft="@drawable/rastyazhka"
+                android:paddingBottom="10dp"
+                android:paddingLeft="30dp"
+                android:textSize="18sp"
+                android:text="Растяжка"
+                />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>
