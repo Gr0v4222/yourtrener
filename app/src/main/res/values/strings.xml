@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Your Тренер</string>
+    <string name="Start">старт</string>
+    <string name="exit">выход</string>
+    <string name="time_default">00</string>
+    <string name="pause">пауза</string>
+    <string name="start">Начать</string>
+</resources>
