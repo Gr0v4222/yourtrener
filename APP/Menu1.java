@@ -6,8 +6,11 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import space.projectKPO.yourtrener.ui.login.LoginActivity;
 
 public class Menu1 extends AppCompatActivity {
 
@@ -20,21 +23,27 @@ public class Menu1 extends AppCompatActivity {
         w = getWindow();
         w.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        //Button imageButtonBack = (Button) this.findViewById(R.id.imageButtonBack);
-        //imageButtonBack.setOnClickListener(new View.OnClickListener() {
-          //  @Override
-           // public void onClick(View v) {
+        ImageButton imageButtonBack = (ImageButton)findViewById(R.id.imageButtonBack);
+        imageButtonBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    Intent intent = new Intent (Menu1.this, MainActivity.class);
+                    startActivity(intent); finish();
+                }catch (Exception e) {
 
-           // }
-        //});
+                }
+            }
+        });
 
-        Button buttonEx = (Button)findViewById(R.id.buttonEx); //объект для кнопки начать
+        Button buttonEx = (Button)findViewById(R.id.buttonEx); //объект для кнопки
         buttonEx.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 try {
-                    Intent intent1 = new Intent(Menu1.this, MenuLevels.class);
-                    startActivity(intent1); finish();     //команда перейти на другую страницу
+                    Intent intent = new Intent(Menu1.this, MenuLevels.class);
+                    startActivity(intent);
+                    finish();     //команда перейти на другую страницу
                 } catch (Exception e) {  //если переход не состоится, то игра не вылетит и не закроется
 
                 }
