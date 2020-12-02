@@ -30,7 +30,18 @@ public class MenuLevels extends AppCompatActivity {
                // }
            // }
         //});
+        Button mbutton2 = (Button)findViewById(R.id.button2); //объект для кнопки начать
+        mbutton2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try {
+                    Intent intent1 = new Intent(MenuLevels.this, stretching_short.class);
+                    startActivity(intent1); finish();     //команда перейти на другую страницу
+                } catch (Exception e) {  //если переход не состоится, то игра не вылетит и не закроется
 
+                }
+            }
+        });
         Window w;
         w = getWindow();
         ((Window) w).setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
