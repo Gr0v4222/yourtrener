@@ -1,5 +1,7 @@
 package com.projectKPO.yourtrener;
 
+import android.app.Dialog;
+import android.content.Intent;
 import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.TextView;
@@ -22,11 +24,13 @@ public class stretching_short extends AppCompatActivity {
     private TextView mEx;
     private Button mButtonStartPause;
     private Button mButtonExit;
+    private TextView mExInfoButton;
     private CountDownTimer mCountDownTimer;
     private boolean mTimerRunning;
     private long mTimeLeftInMillis = START_TIME_IN_MILLIS;
     private int i=1;
     private String[] A={"","ПОВОРОТЫ ГОЛОВЫ","ВРАЩЕНИЕ ЗАПЯСТИЙ","ВРАЩЕНИЕ ЛОКТЕЙ"," ВРАЩЕНИЕ ПЛЕЧАМИ","ВРАЩЕНИЕ РУКАМИ","НАКЛОНЫ КОРПУСА","ВРАЩЕНИЕ ТАЗОМ","ВРАЩЕНИЕ БЕДРАМИ","ВРАЩЕНИЕ КОЛЕНЯМИ","ВРАЩЕНИЕ СТОПАМИ"};
+    Dialog dialog_info;
     @Override
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +38,7 @@ public class stretching_short extends AppCompatActivity {
         setContentView(R.layout.stretching_short);
         mTextViewCountDown = findViewById(R.id.text_view_countdown);
         mEx= findViewById(R.id.Ex);
+        mExInfoButton = findViewById(R.id.exinfobutton);
         mButtonStartPause = findViewById(R.id.button_start_pause);
         mButtonExit = findViewById(R.id.button_exit);
         mButtonStartPause.setOnClickListener(new View.OnClickListener() {
@@ -46,10 +51,17 @@ public class stretching_short extends AppCompatActivity {
                 }
             }
         });
+        mExInfoButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
 
         updateCountDownText();
         webView = (WebView) findViewById(R.id.s_s);
         webView.loadUrl("file:///android_asset/s_s_1.gif");
+        dialog_info= new Dialog(this);
     }
 
     private void startTimer() {
@@ -105,4 +117,7 @@ public class stretching_short extends AppCompatActivity {
         backPressedTime = System.currentTimeMillis();
 
     }
+
+
+
 }

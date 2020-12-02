@@ -20,21 +20,39 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="100dp"
         />
+    <LinearLayout
+        android:id="@+id/ex_name_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/s_s">
     <TextView
         android:id="@+id/Ex"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/s_s"
+
+
         android:text="ПОВОРОТЫ ГОЛОВЫ"
         android:textColor="@android:color/black"
         android:textSize="30sp" />
+
+        <TextView
+            android:id="@+id/exinfobutton"
+
+            android:layout_width="30sp"
+            android:layout_height="30sp"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/button_stroke_black95_press_white"
+            android:gravity="center"
+            android:text="i"
+            android:textStyle="bold" />
+    </LinearLayout>
     <TextView
         android:id="@+id/text_view_countdown"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_below="@+id/Ex"
+        android:layout_below="@+id/ex_name_info"
         android:text="@string/time_default"
         android:textColor="@android:color/black"
         android:textSize="60sp" />
@@ -45,6 +63,7 @@
         android:layout_below="@+id/text_view_countdown"
         android:layout_centerHorizontal="true"
         android:text="@string/Start" />
+
     <Button
         android:id="@+id/button_exit"
         android:layout_width="wrap_content"
