@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 try {
-                    Intent intent = new Intent(MainActivity.this, Menu1.class);
+                    Intent intent = new Intent(MainActivity.this, Activity_login.class);
                     startActivity(intent); finish();     //команда перейти на другую страницу
                 } catch (Exception e) {  //если переход не состоится, то игра не вылетит и не закроется
 

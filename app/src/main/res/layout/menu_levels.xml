@@ -20,7 +20,7 @@
         android:orientation="vertical">
 
         <ImageButton
-            android:id="@+id/imageButton"
+            android:id="@+id/backButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/button_stroke_black95_press_white"
@@ -61,7 +61,8 @@
                 android:paddingLeft="30dp"
                 android:textSize="18sp"
                 android:textColor="@android:color/black"
-                android:text="Растяяжка длинная" />
+                android:text="Растяяжка длинная"
+                />
 
             <Button
                 android:id="@+id/button4"

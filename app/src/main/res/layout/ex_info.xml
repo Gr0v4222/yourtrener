@@ -4,6 +4,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:id="@+id/ex_info"
+    android:background="@drawable/info_background"
     android:layout_gravity="center"
     android:scaleType="centerCrop"
     android:layout_margin="30dp"
@@ -29,7 +30,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/ex_info_text"
-            android:text="SimpleText"
+            android:text="SimpleText SimpleText SimpleText SimpleText SimpleText SimpleText SimpleTextSimpleText"
             />
     </LinearLayout>
 </LinearLayout>

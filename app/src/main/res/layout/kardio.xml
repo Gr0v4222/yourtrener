@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.projectKPO.yourtrener.kardio">
+
+    <ImageView
+        android:id="@+id/background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/background" />
+    <WebView
+        android:id="@+id/k"
+        android:layout_width="350dp"
+        android:layout_height="350dp"
+        android:scaleType="centerCrop"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp"
+        />
+    <LinearLayout
+        android:id="@+id/ex_name_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/k">
+        <TextView
+            android:id="@+id/Ex"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:text="ПОВОРОТЫ ГОЛОВЫ"
+            android:textColor="@android:color/black"
+            android:textSize="20sp" />
+
+
+    </LinearLayout>
+    <TextView
+        android:id="@+id/exinfobutton"
+
+        android:layout_width="30sp"
+        android:layout_height="30sp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/ex_name_info"
+        android:background="@drawable/button_stroke_black95_press_white"
+        android:gravity="center"
+        android:text="i"
+        android:textStyle="bold" />
+    <TextView
+        android:id="@+id/text_view_countdown"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="530dp"
+        android:text="@string/time_default"
+        android:textColor="@android:color/black"
+        android:textSize="60sp" />
+    <Button
+        android:id="@+id/button_start_pause"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/text_view_countdown"
+        android:layout_centerHorizontal="true"
+        android:text="@string/Start" />
+
+    <ImageButton
+        android:id="@+id/imageButtonBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_stroke_black95_press_white"
+        android:backgroundTint="#00F9F6FA"
+        android:clickable="true"
+        android:paddingHorizontal="20dp"
+        android:tint="#201F1F"
+        android:layout_marginTop="20dp"
+        app:srcCompat="@drawable/abc_vector_test" />
+
+</RelativeLayout>

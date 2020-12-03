@@ -1,10 +1,17 @@
 package com.projectKPO.yourtrener;
 
+import android.app.Dialog;
+import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
+import android.view.Window;
 import android.webkit.WebView;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -14,27 +21,50 @@ import java.util.Locale;
 
 public class stretching_long extends AppCompatActivity {
 
-    WebView webView;
+    private ImageView s_l;
     private long backPressedTime;
-    private static final long START_TIME_IN_MILLIS = 3000;
+    private static final long START_TIME_IN_MILLIS = 30000;
     private TextView mTextViewCountDown;
     private TextView mEx;
     private Button mButtonStartPause;
-    private Button mButtonExit;
+    private ImageButton mButtonExit;
+    private TextView mExInfoButton;
+    private TextView mExitInfo;
     private CountDownTimer mCountDownTimer;
+    private TextView mExInfoText;
     private boolean mTimerRunning;
     private long mTimeLeftInMillis = START_TIME_IN_MILLIS;
     private int i=1;
-    private String[] A={"","ПОВОРОТЫ ГОЛОВЫ","ВРАЩЕНИЕ ЗАПЯСТИЙ","ВРАЩЕНИЕ ЛОКТЕЙ"," ВРАЩЕНИЕ ПЛЕЧАМИ","ВРАЩЕНИЕ РУКАМИ","НАКЛОНЫ КОРПУСА","ВРАЩЕНИЕ ТАЗОМ","ВРАЩЕНИЕ БЕДРАМИ","ВРАЩЕНИЕ КОЛЕНЯМИ","ВРАЩЕНИЕ СТОПАМИ"};
+    private int end_i=31;
+    private String[] exName;
+    private String[] exInfo;
+    Dialog dialog_info;
     @Override
 
     protected void onCreate(Bundle savedInstanceState) {
+        exName=getResources().getStringArray(R.array.s_l_ex_name);
+        exInfo=getResources().getStringArray(R.array.s_l_ex_info);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.stretching_long);
         mTextViewCountDown = findViewById(R.id.text_view_countdown);
         mEx= findViewById(R.id.Ex);
+        mExInfoButton = findViewById(R.id.exinfobutton);
+
         mButtonStartPause = findViewById(R.id.button_start_pause);
-        mButtonExit = findViewById(R.id.button_exit);
+        mButtonExit = findViewById(R.id.imageButtonBack);
+        mButtonExit.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                if(backPressedTime + 2000> System.currentTimeMillis()){
+                    Intent intent = new Intent(stretching_long.this, MenuLevels.class);
+                    startActivity(intent); finish();
+                    return;
+                }else{
+                    Toast.makeText(getBaseContext(), "Нажмите ещё раз, чтобы отменить тренировку",Toast.LENGTH_SHORT).show();
+                }
+                backPressedTime = System.currentTimeMillis();
+            }
+        });
         mButtonStartPause.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -46,9 +76,34 @@ public class stretching_long extends AppCompatActivity {
             }
         });
 
+
+        mExInfoButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog_info.show();
+                mExitInfo= dialog_info.findViewById(R.id.X);
+                mExitInfo.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog_info.dismiss();
+                    }
+                });
+            }
+        });
+
+
         updateCountDownText();
-        webView = (WebView) findViewById(R.id.s_s);
-        webView.loadUrl("file:///android_asset/s_s_1.gif");
+        s_l = (ImageView) findViewById(R.id.s_l);
+        s_l.setImageResource(R.drawable.s_l_1);
+        dialog_info= new Dialog(stretching_long.this);
+        dialog_info.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog_info.setContentView(R.layout.ex_info);
+        dialog_info.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog_info.setCancelable(false);
+        mExInfoText=dialog_info.findViewById(R.id.ex_info_text);
+        mEx.setText(exName[i]);
+        mExInfoText.setText(exInfo[i]);
+
     }
 
     private void startTimer() {
@@ -60,7 +115,7 @@ public class stretching_long extends AppCompatActivity {
             }
             @Override
             public void onFinish() {
-                if (i<10)
+                if (i<end_i)
                 {
                     i+=1;
                 mTimerRunning = false;
@@ -69,9 +124,11 @@ public class stretching_long extends AppCompatActivity {
                 mTimeLeftInMillis = START_TIME_IN_MILLIS;
                 updateCountDownText();
                 mButtonStartPause.setVisibility(View.VISIBLE);
-                webView.clearCache(true);
-                webView.loadUrl("file:///android_asset/s_s_"+Integer.toString(i)+".gif");
-                mEx.setText(A[i]);
+                String name="s_l_"+Integer.toString(i);
+                int id = getResources().getIdentifier(name, "drawable", getPackageName());
+                s_l.setImageResource(id);
+                mEx.setText(exName[i]);
+                mExInfoText.setText(exInfo[i]);
                 }
                 else{
                     mTimerRunning = false;
@@ -96,7 +153,8 @@ public class stretching_long extends AppCompatActivity {
     @Override
     public void onBackPressed(){
         if(backPressedTime + 2000> System.currentTimeMillis()){
-            super.onBackPressed();
+            Intent intent = new Intent(stretching_long.this, MenuLevels.class);
+            startActivity(intent); finish();
             return;
         }else{
             Toast.makeText(getBaseContext(), "Нажмите ещё раз, чтобы отменить тренировку",Toast.LENGTH_SHORT).show();
@@ -104,4 +162,7 @@ public class stretching_long extends AppCompatActivity {
         backPressedTime = System.currentTimeMillis();
 
     }
+
+
+
 }

@@ -26,33 +26,35 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/s_s">
-    <TextView
-        android:id="@+id/Ex"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-
-        android:text="ПОВОРОТЫ ГОЛОВЫ"
-        android:textColor="@android:color/black"
-        android:textSize="30sp" />
-
         <TextView
-            android:id="@+id/exinfobutton"
-
-            android:layout_width="30sp"
-            android:layout_height="30sp"
-            android:layout_gravity="center_vertical"
-            android:background="@drawable/button_stroke_black95_press_white"
+            android:id="@+id/Ex"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
             android:gravity="center"
-            android:text="i"
-            android:textStyle="bold" />
+            android:text="ПОВОРОТЫ ГОЛОВЫ"
+            android:textColor="@android:color/black"
+            android:textSize="20sp" />
+
+
     </LinearLayout>
+    <TextView
+        android:id="@+id/exinfobutton"
+
+        android:layout_width="30sp"
+        android:layout_height="30sp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/ex_name_info"
+        android:background="@drawable/button_stroke_black95_press_white"
+        android:gravity="center"
+        android:text="i"
+        android:textStyle="bold" />
     <TextView
         android:id="@+id/text_view_countdown"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_below="@+id/ex_name_info"
+        android:layout_marginTop="530dp"
         android:text="@string/time_default"
         android:textColor="@android:color/black"
         android:textSize="60sp" />
@@ -64,12 +66,16 @@
         android:layout_centerHorizontal="true"
         android:text="@string/Start" />
 
-    <Button
-        android:id="@+id/button_exit"
+    <ImageButton
+        android:id="@+id/imageButtonBack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:text="@string/exit" />
+        android:background="@drawable/button_stroke_black95_press_white"
+        android:backgroundTint="#00F9F6FA"
+        android:clickable="true"
+        android:paddingHorizontal="20dp"
+        android:tint="#201F1F"
+        android:layout_marginTop="20dp"
+        app:srcCompat="@drawable/abc_vector_test" />
 
 </RelativeLayout>
