@@ -4,7 +4,7 @@
     <string name="exit">выход</string>
     <string name="time_default">00</string>
     <string name="pause">пауза</string>
-    <string name="start">Начать</string>
+    <string name="begin">Начать</string>
     <string name="prompt_name">Имя</string>
     <string name="prompt_age">Возраст</string>
     <string name="prompt_weight">Вес</string>

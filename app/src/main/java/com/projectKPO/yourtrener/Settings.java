@@ -14,10 +14,10 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class Settings extends AppCompatActivity {
-    private String mName;
-    private int mAge;
-    private float mHeight;
-    private float mWeight;
+    protected String mName;
+    protected int mAge;
+    protected float mHeight;
+    protected float mWeight;
     public static final String BD_Name = "BD";
     SharedPreferences mBD;
     public static final String NAME = "Name";
@@ -40,6 +40,61 @@ public class Settings extends AppCompatActivity {
             return true;
         }
     }
+    public int isCorrectToSave(String n, String a, String h,String w){
+        if ((n.equals(""))||(a.equals(""))||(w.equals(""))||(h.equals("")))
+        {
+            return 1;
+        }
+        else {
+
+            {
+                if (isntInt(a)) {
+                    return 2;
+                } else {
+                    if (Integer.parseInt(a) < 3 || Integer.parseInt(a) > 90) {
+                        return 3;
+                    } else {
+                        if (isntNumeric(w)) {
+                            return 4;
+                        } else {
+                            if (Float.parseFloat(w) < 10 || Float.parseFloat(w) > 150) {
+                                return 5;
+                            } else {
+                                if (isntInt(h)) {
+                                    return 6;
+                                } else {
+                                    if ( Integer.parseInt(h) < 55 || Integer.parseInt(h) > 251) {
+                                        return 7;
+                                    } else return 0;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    public void save_set(EditText n, EditText a, EditText h,EditText w,SharedPreferences.Editor ed){
+        ed.putString(NAME,n.getText().toString());
+        ed.putInt(AGE,Integer.parseInt(a.getText().toString()));
+        ed.putFloat(HEIGHT,Float.parseFloat(h.getText().toString()));
+        ed.putFloat(WEIGHT,Float.parseFloat(w.getText().toString()));
+        ed.apply();
+    }
+    public boolean load_set (EditText n, EditText a, EditText h, EditText w){
+        if(mBD.contains(NAME)) {
+            mName = (mBD.getString(NAME, ""));
+            mAge = (mBD.getInt(AGE, 10));
+            mHeight = (mBD.getFloat(HEIGHT, 1));
+            mWeight = (mBD.getFloat(WEIGHT, 30));
+            n.setText(mName);
+            a.setText(Integer.toString(mAge));
+            w.setText(Float.toString(mWeight));
+            h.setText(Float.toString(mHeight));
+            return true;
+        }
+        else return false;
+    }
     @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,24 +108,19 @@ public class Settings extends AppCompatActivity {
         final EditText weightEditText = findViewById(R.id.weight);
         final EditText heightEditText = findViewById(R.id.height);
         final Button loginButton = findViewById(R.id.login);
-        if(mBD.contains(NAME)) {
-            mName=(mBD.getString(NAME, ""));
-            mAge=(mBD.getInt(AGE, 0));
-            mHeight=(mBD.getFloat(HEIGHT, 0));
-            mWeight=(mBD.getFloat(WEIGHT, 0));
-        }
-        nameEditText.setText(mName);
-        ageEditText.setText(Integer.toString(mAge));
-        weightEditText.setText(Float.toString(mWeight));
-        heightEditText.setText(Float.toString(mHeight));
+        if(load_set(nameEditText,ageEditText,heightEditText,weightEditText)){}
 
 
         loginButton.setOnClickListener(new View.OnClickListener(){
             @SuppressLint("DefaultLocale")
             @Override
             public void onClick(View v){
-
-                if ((nameEditText.getText().toString().equals(""))||(ageEditText.getText().toString().equals(""))||(weightEditText.getText().toString().equals(""))||(heightEditText.getText().toString().equals("")))
+                String sName=nameEditText.getText().toString();
+                String sAge=ageEditText.getText().toString();
+                String sHeight=nameEditText.getText().toString();
+                String sWeight=nameEditText.getText().toString();
+                int check_enter=isCorrectToSave(sName,sAge,sHeight,sWeight);
+                if (check_enter==1)
                 {
                     Toast.makeText(getBaseContext(), "Заполните все поля",Toast.LENGTH_LONG).show();
                 }
@@ -78,34 +128,26 @@ public class Settings extends AppCompatActivity {
                 {
 
                     {
-                        if (isntInt(ageEditText.getText().toString()))
+                        if (check_enter==2)
                         {Toast.makeText(getBaseContext(), "Не правильно введён возраст",Toast.LENGTH_LONG).show();}
-                            else{if (Integer.parseInt(ageEditText.getText().toString())<0 || Integer.parseInt(ageEditText.getText().toString())>90)
-                                {Toast.makeText(getBaseContext(), "ЧТО ТЫ ТАКОЕ... Не правильно введён возраст",Toast.LENGTH_LONG).show();}
+                            else{if (check_enter==3)
+                                {Toast.makeText(getBaseContext(), "Не правильно введён возраст",Toast.LENGTH_LONG).show();}
                             else {
-                            if (isntNumeric(weightEditText.getText().toString())) {
+                            if (check_enter==4) {
                                     Toast.makeText(getBaseContext(), "Не правильно введён вес (пример: '75.2' в кг)", Toast.LENGTH_LONG).show();
                                 }
                                 else{
-                                    if (Float.parseFloat(weightEditText.getText().toString())<10 || Float.parseFloat(weightEditText.getText().toString())>180)
-                                    {Toast.makeText(getBaseContext(), "ЧТО ТЫ ТАКОЕ... Не правильно введён вес",Toast.LENGTH_LONG).show();}
+                                    if (check_enter==5)
+                                    {Toast.makeText(getBaseContext(), "Не правильно введён вес (пример: '75.2' в кг)",Toast.LENGTH_LONG).show();}
                                     else {
-                                        if (isntNumeric(heightEditText.getText().toString())) {
-                                            Toast.makeText(getBaseContext(), "Не правильно введён рост (пример: '1.83' в метрах)", Toast.LENGTH_LONG).show();
+                                        if (check_enter==6) {
+                                            Toast.makeText(getBaseContext(), "Не правильно введён рост (пример: '183' в см)", Toast.LENGTH_LONG).show();
                                     }
                                         else {
-                                            if (Float.parseFloat(heightEditText.getText().toString())<0.55 || Float.parseFloat(heightEditText.getText().toString())>2.51)
-                                            {Toast.makeText(getBaseContext(), "Не правильно введён рост",Toast.LENGTH_LONG).show();}
+                                            if (check_enter==7)
+                                            {Toast.makeText(getBaseContext(), "Не правильно введён рост (пример: '183' в см)",Toast.LENGTH_LONG).show();}
                                             else {
-                                                mName = nameEditText.getText().toString();
-                                                mAge = Integer.parseInt(ageEditText.getText().toString());
-                                                mWeight = Float.parseFloat(weightEditText.getText().toString());
-                                                mHeight = Float.parseFloat(heightEditText.getText().toString());
-                                                mBDeditor.putString(NAME,mName);
-                                                mBDeditor.putInt(AGE,mAge);
-                                                mBDeditor.putFloat(HEIGHT,mHeight);
-                                                mBDeditor.putFloat(WEIGHT,mWeight);
-                                                mBDeditor.apply();
+                                                save_set(nameEditText,ageEditText,heightEditText,weightEditText,mBDeditor);
                                                 Intent intent1 = new Intent(Settings.this, Menu1.class);
                                                 startActivity(intent1); finish();
                                             }
