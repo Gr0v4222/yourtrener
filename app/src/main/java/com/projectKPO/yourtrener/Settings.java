@@ -81,7 +81,7 @@ public class Settings extends AppCompatActivity {
         ed.putFloat(WEIGHT,Float.parseFloat(w.getText().toString()));
         ed.apply();
     }
-    public boolean load_set (EditText n, EditText a, EditText h, EditText w){
+    public void load_set (EditText n, EditText a, EditText h, EditText w){
         if(mBD.contains(NAME)) {
             mName = (mBD.getString(NAME, ""));
             mAge = (mBD.getInt(AGE, 10));
@@ -91,9 +91,7 @@ public class Settings extends AppCompatActivity {
             a.setText(Integer.toString(mAge));
             w.setText(Float.toString(mWeight));
             h.setText(Float.toString(mHeight));
-            return true;
         }
-        else return false;
     }
     @SuppressLint("SetTextI18n")
     @Override
@@ -108,7 +106,7 @@ public class Settings extends AppCompatActivity {
         final EditText weightEditText = findViewById(R.id.weight);
         final EditText heightEditText = findViewById(R.id.height);
         final Button loginButton = findViewById(R.id.login);
-        if(load_set(nameEditText,ageEditText,heightEditText,weightEditText)){}
+        load_set(nameEditText,ageEditText,heightEditText,weightEditText);
 
 
         loginButton.setOnClickListener(new View.OnClickListener(){
@@ -117,8 +115,8 @@ public class Settings extends AppCompatActivity {
             public void onClick(View v){
                 String sName=nameEditText.getText().toString();
                 String sAge=ageEditText.getText().toString();
-                String sHeight=nameEditText.getText().toString();
-                String sWeight=nameEditText.getText().toString();
+                String sHeight=heightEditText.getText().toString();
+                String sWeight=weightEditText.getText().toString();
                 int check_enter=isCorrectToSave(sName,sAge,sHeight,sWeight);
                 if (check_enter==1)
                 {

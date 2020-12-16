@@ -37,7 +37,7 @@ public class Activity_login extends AppCompatActivity {
     public static final String WEIGHT = "Weight";
     public static boolean isntNumeric(String str) {
         try {
-            Double.parseDouble(str);
+            Float.parseFloat(str);
             return false;
         } catch (NumberFormatException e) {
             return true;
@@ -118,7 +118,7 @@ public class Activity_login extends AppCompatActivity {
         final EditText weightEditText = findViewById(R.id.weight);
         final EditText heightEditText = findViewById(R.id.height);
         final Button loginButton = findViewById(R.id.login);
-        if(!(load_set(nameEditText,ageEditText,heightEditText,weightEditText))){
+        if((load_set(nameEditText,ageEditText,heightEditText,weightEditText))){
             Intent intent1 = new Intent(Activity_login.this, Menu1.class);
             startActivity(intent1); finish();
         }
@@ -130,8 +130,8 @@ public class Activity_login extends AppCompatActivity {
             public void onClick(View v){
                 String sName=nameEditText.getText().toString();
                 String sAge=ageEditText.getText().toString();
-                String sHeight=nameEditText.getText().toString();
-                String sWeight=nameEditText.getText().toString();
+                String sHeight=heightEditText.getText().toString();
+                String sWeight=weightEditText.getText().toString();
                 int check_enter=isCorrectToSave(sName,sAge,sHeight,sWeight);
                 if (check_enter==1)
                 {

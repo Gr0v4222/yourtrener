@@ -1,7 +1,10 @@
 package com.projectKPO.yourtrener;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -16,10 +19,13 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Locale;
 
 public class kardio extends AppCompatActivity {
 
+    private final String TR_NAME = "Кардио";
     WebView webView;
     private long backPressedTime;
     private static final long START_TIME_IN_MILLIS = 30000;
@@ -38,9 +44,17 @@ public class kardio extends AppCompatActivity {
     private String[] exName;
     private String[] exInfo;
     Dialog dialog_info;
+    private String curtime;
+    public static final String BD_Name = "BD";
+    SharedPreferences mBD;
+    public String[] STAT = {"D_Hash","Duration","Tr_Name"};
+    @SuppressLint("SetTextI18n")
     @Override
 
     protected void onCreate(Bundle savedInstanceState) {
+        SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date date = new Date(System.currentTimeMillis());
+        curtime = formatter.format(date);
         exName=getResources().getStringArray(R.array.k_ex_name);
         exInfo=getResources().getStringArray(R.array.k_ex_info);
         super.onCreate(savedInstanceState);
@@ -106,6 +120,8 @@ public class kardio extends AppCompatActivity {
     }
 
     private void startTimer() {
+        mBD = this.getSharedPreferences(BD_Name, Context.MODE_PRIVATE);
+        SharedPreferences.Editor mBDeditor = mBD.edit();
         mCountDownTimer = new CountDownTimer(mTimeLeftInMillis, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
@@ -132,6 +148,12 @@ public class kardio extends AppCompatActivity {
                     mTimerRunning = false;
                     mButtonStartPause.setText("старт");
                     mButtonStartPause.setVisibility(View.INVISIBLE);
+                    mBDeditor.putString(STAT[0],curtime);
+                    mBDeditor.putString(STAT[1],Long.toString(START_TIME_IN_MILLIS/1000*end_i));
+                    mBDeditor.putString(STAT[2],TR_NAME);
+                    mBDeditor.apply();
+                    Intent intent = new Intent(kardio.this, MenuLevels.class);
+                    startActivity(intent); finish();
                 }
             }
         }.start();
