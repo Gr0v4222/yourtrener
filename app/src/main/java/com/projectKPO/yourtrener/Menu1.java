@@ -54,6 +54,18 @@ public class Menu1 extends AppCompatActivity {
                 }
             }
         });
+        Button buttonStat = (Button)findViewById(R.id.buttonStat); //объект для кнопки начать
+        buttonStat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try {
+                    Intent intent1 = new Intent(Menu1.this, Stats.class);
+                    startActivity(intent1); onPause();     //команда перейти на другую страницу
+                } catch (Exception e) {  //если переход не состоится, то игра не вылетит и не закроется
+
+                }
+            }
+        });
         Button button4Settings = (Button)findViewById(R.id.button4Settings); //объект для кнопки начать
         button4Settings.setOnClickListener(new View.OnClickListener() {
             @Override

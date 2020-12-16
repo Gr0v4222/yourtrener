@@ -61,6 +61,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="com.projectKPO.yourtrener.Stats">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name="com.projectKPO.yourtrener.Settings">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -26,7 +26,9 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Locale;
+import java.util.Set;
 
 public class stretching_short extends AppCompatActivity {
 
@@ -45,18 +47,30 @@ public class stretching_short extends AppCompatActivity {
     private boolean mTimerRunning;
     private long mTimeLeftInMillis = START_TIME_IN_MILLIS;
     private int i=1;
-    private int end_i=10;
+    private final int end_i=10;
     private String[] exName;
     private String[] exInfo;
     private String curtime;
     Dialog dialog_info;
     public static final String BD_Name = "BD";
     SharedPreferences mBD;
-    public String[] STAT = {"D_Hash","Duration","Tr_Name"};
+    public String STAT = "D_Hash";
+    private Set<String> D_Hash;
+    protected void load_stat(){
+        if(mBD.contains(STAT)){
+        D_Hash=mBD.getStringSet(STAT, new HashSet<String>());
+         }
+    }
+    protected void add_stat(String Dh, String D, String TN, SharedPreferences.Editor ed){
+        D_Hash.add(Dh+" "+TN+": "+D+"сек");
+        ed.putStringSet(STAT, D_Hash);
+        ed.apply();
+    }
     @SuppressLint("SetTextI18n")
     @Override
 
     protected void onCreate(Bundle savedInstanceState) {
+        D_Hash=new HashSet<>();
         SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date date = new Date(System.currentTimeMillis());
         curtime = formatter.format(date);
@@ -127,6 +141,7 @@ public class stretching_short extends AppCompatActivity {
     private void startTimer() {
         mBD = this.getSharedPreferences(BD_Name, Context.MODE_PRIVATE);
         SharedPreferences.Editor mBDeditor = mBD.edit();
+        load_stat();
         mCountDownTimer = new CountDownTimer(mTimeLeftInMillis, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
@@ -153,10 +168,7 @@ public class stretching_short extends AppCompatActivity {
                     mTimerRunning = false;
                     mButtonStartPause.setText("старт");
                     mButtonStartPause.setVisibility(View.INVISIBLE);
-                    mBDeditor.putString(STAT[0],curtime);
-                    mBDeditor.putString(STAT[1],Long.toString(START_TIME_IN_MILLIS/1000*end_i));
-                    mBDeditor.putString(STAT[2],TR_NAME);
-                    mBDeditor.apply();
+                    add_stat(curtime,Long.toString(START_TIME_IN_MILLIS/1000*end_i),TR_NAME,mBDeditor);
                     Intent intent = new Intent(stretching_short.this, MenuLevels.class);
                     startActivity(intent); finish();
                 }
